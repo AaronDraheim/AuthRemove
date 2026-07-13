@@ -1,4 +1,4 @@
-<#Disclaimer
+<#
 The sample scripts are not supported under any Microsoft standard support program or service.
 The sample scripts are provided AS IS without warranty of any kind. Microsoft further disclaims all implied warranties
 including, without limitation, any implied warranties of merchantability or of fitness for a particular purpose.
@@ -7,31 +7,31 @@ In no event shall Microsoft, its authors, or anyone else involved in the creatio
 be liable for any damages whatsoever (including, without limitation, damages for loss of business profits, business interruption,
 loss of business information, or other pecuniary loss) arising out of the use of or inability to use the sample scripts or
 documentation, even if Microsoft has been advised of the possibility of such damages.
+#>
+# Purpose
+# Combined Microsoft Graph PowerShell workflow for auditing and removing selected authentication methods.
 
-Purpose
-Combined Microsoft Graph PowerShell workflow for auditing and removing selected authentication methods.
+# Supported behavior
+# - Audit registered authentication methods.
+# - Remove selected phone authentication methods: alternateMobile and office.
+# - Inventory security questions only. This script does not attempt security question removal.
+# - Scope by sample, full tenant, specific UPNs, or group object IDs.
+# - Filter to enabled accounts only or all accounts after target scope is selected.
+# - Support audit-only, remove-only, audit-plus-remove, report-only preview, hard confirmation, and post-removal validation.
 
-Supported behavior
-- Audit registered authentication methods.
-- Remove selected phone authentication methods: alternateMobile and office.
-- Inventory security questions only. This script does not attempt security question removal.
-- Scope by sample, full tenant, specific UPNs, or group object IDs.
-- Filter to enabled accounts only or all accounts after target scope is selected.
-- Support audit-only, remove-only, audit-plus-remove, report-only preview, hard confirmation, and post-removal validation.
+# Important Microsoft Graph notes
+# - Alternate mobile and office phone are phoneAuthenticationMethod resources and can be removed with Remove-MgUserAuthenticationPhoneMethod.
+# - A phone method cannot be deleted if it is the user's default MFA authentication method.
+# - A user cannot have alternateMobile without mobile. This script does not remove mobile phone methods.
+# - Recommended delegated role: Authentication Administrator or Privileged Authentication Administrator.
+# - Required Microsoft Graph permission for removal: UserAuthenticationMethod.ReadWrite.All.
 
-Important Microsoft Graph notes
-- Alternate mobile and office phone are phoneAuthenticationMethod resources and can be removed with Remove-MgUserAuthenticationPhoneMethod.
-- A phone method cannot be deleted if it is the user's default MFA authentication method.
-- A user cannot have alternateMobile without mobile. This script does not remove mobile phone methods.
-- Recommended delegated role: Authentication Administrator or Privileged Authentication Administrator.
-- Required Microsoft Graph permission for removal: UserAuthenticationMethod.ReadWrite.All.
-
-Menu path
-1. Choose workflow: Audit, Remove, Audit + Remove, or Validate.
-2. Choose target scope: Sample, Full tenant, Specific UPNs, or Specific group object IDs.
-3. Enter target filter details.
-4. Choose account scope: Enabled accounts only or All accounts.
-5. For removal workflows, choose removal target and report-only / implementation behavior.
+# Menu path
+# 1. Choose workflow: Audit, Remove, Audit + Remove, or Validate.
+# 2. Choose target scope: Sample, Full tenant, Specific UPNs, or Specific group object IDs.
+# 3. Enter target filter details.
+# 4. Choose account scope: Enabled accounts only or All accounts.
+# 5. For removal workflows, choose removal target and report-only / implementation behavior.
 
 
 param(
