@@ -21,8 +21,6 @@ documentation, even if Microsoft has been advised of the possibility of such dam
 
 # Important Microsoft Graph notes
 # - Alternate mobile and office phone are phoneAuthenticationMethod resources and can be removed with Remove-MgUserAuthenticationPhoneMethod.
-# - A phone method cannot be deleted if it is the user's default MFA authentication method.
-# - A user cannot have alternateMobile without mobile. This script does not remove mobile phone methods.
 # - Recommended delegated role: Authentication Administrator or Privileged Authentication Administrator.
 # - Required Microsoft Graph permission for removal: UserAuthenticationMethod.ReadWrite.All.
 
